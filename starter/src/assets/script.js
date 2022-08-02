@@ -5,21 +5,21 @@ products = [
     price: 4,
     quantity: 0,
     productId: 111,
-    image: "url(src/images/cherry.jpg)"
+    image: src = "images/cherry.jpg"
   },
   orange = {
     name: "orange",
     price: 10,
     quantity: 0,
     productId: 222,
-    image: "src(images/orange.jpg"
+    image: src = "images/orange.jpg"
   },
   strawberry = {
     name: "strawberry",
     price: 5,
     quantity: 0,
     productId: 333,
-    image: const img = 
+    image: src = "images/strawberry.jpg"
   }
 ]
 /* Create 3 or more product objects using object literal notation 
