@@ -17,30 +17,62 @@
 
 /* Declare an empty array named cart to hold the items in the cart */
 
-products = [
-  cherry = {
-    name: "cherry",
+const products = [
+ {
+    name: "Carton of Cherries",
     price: 4,
     quantity: 0,
     productId: 111,
     image: src = "images/cherry.jpg"
   },
-  orange = {
-    name: "orange",
+ {
+    name: "Bag of oranges",
     price: 10,
     quantity: 0,
     productId: 222,
     image: src = "images/orange.jpg"
   },
-  strawberry = {
-    name: "strawberry",
+ {
+    name: "Carton of Strawberries",
     price: 5,
     quantity: 0,
     productId: 333,
     image: src = "images/strawberry.jpg"
   }
 ];
-cart = [];
+let cart = [];
+
+function getProductById(productId) {
+  for (const product of products) {
+    if (product.productId === productId) {
+      return product;
+    }
+  }
+
+  return null;
+}
+
+function getProductByIdInCart(productId) {
+  for (const product of cart) {
+    if (product.productId === productId) {
+      return product;
+    }
+  }
+
+  return null;
+}
+
+function addProductToCart(productId) {
+  const product = getProductById(productId);
+  const productInCart = getProductByIdInCart(productId);
+
+  if (productInCart === null) {
+    cart.push(product);
+  } else {
+    productInCart.quantity++;
+  }
+}
+
 
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
@@ -87,7 +119,7 @@ cart = [];
    npm run test
 */
 
-module.exports = {
+/*module.exports = {
    products,
    cart,
    addProductToCart,
@@ -98,5 +130,4 @@ module.exports = {
    pay, 
    emptyCart,
    /* Uncomment the following line if completing the currency converter bonus */
-   // currency
-}
+   // currency}
