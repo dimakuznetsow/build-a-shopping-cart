@@ -17,64 +17,6 @@
 
 /* Declare an empty array named cart to hold the items in the cart */
 
-const products = [
- {
-    name: "Carton of Cherries",
-    price: 4,
-    quantity: 0,
-    productId: 111,
-    image: src = "images/cherry.jpg"
-  },
- {
-    name: "Bag of oranges",
-    price: 10,
-    quantity: 0,
-    productId: 222,
-    image: src = "images/orange.jpg"
-  },
- {
-    name: "Carton of Strawberries",
-    price: 5,
-    quantity: 0,
-    productId: 333,
-    image: src = "images/strawberry.jpg"
-  }
-];
-let cart = [];
-
-function getProductById(productId) {
-  for (const product of products) {
-    if (product.productId === productId) {
-      return product;
-    }
-  }
-
-  return null;
-}
-
-function getProductByIdInCart(productId) {
-  for (const product of cart) {
-    if (product.productId === productId) {
-      return product;
-    }
-  }
-
-  return null;
-}
-
-function addProductToCart(productId) {
-  const product = getProductById(productId);
-  const productInCart = getProductByIdInCart(productId);
-
-  if (productInCart === null) {
-    cart.push(product);
-  } else {
-    productInCart.quantity++;
-  }
-}
-
-
-
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
   - addProductToCart should then increase the product's quantity
@@ -97,6 +39,88 @@ function addProductToCart(productId) {
   - removeProductFromCart should update the product quantity to 0
   - removeProductFromCart should remove the product from the cart
 */
+
+const products = [
+  {
+    name: "Strawberries",
+    price: 5,
+    quantity: 0,
+    productId: 1,
+    image: src = "images/strawberry.jpg"
+  },
+  {
+    name: "Cherries",
+    price: 10,
+    quantity: 0,
+    productId: 2,
+    image: src = "images/cherry.jpg"
+  },
+  {
+    name: "Oranges",
+    price: 15,
+    quantity: 0,
+    productId: 3,
+    image: src = "images/orange.jpg"},
+];
+
+let cart = [];
+
+
+
+function addProductToCart(productId) {
+ 
+ const product = products.find(product => product.productId === productId);
+
+  if (cart.includes(product)) {
+    product.quantity++;
+  
+  } else {
+    cart.push(product);
+    product.quantity++;
+}
+}
+
+function increaseQuantity(productId) {
+
+  const product = cart.find(product => product.productId === productId);
+
+  product.quantity++;
+}
+
+function decreaseQuantity(productId) {
+
+  const product = cart.find(product => product.productId === productId);
+
+  
+
+  if (product.quantity > 0) {
+    product.quantity--;
+  
+  } else {
+    cart.pop(product);
+  }
+} 
+
+function removeProductFromCart(productId) {
+
+  const product = cart.find(product => product.productId === productId);
+
+  product.quantity = 0;
+  cart.pop(product);
+
+}
+
+function cartTotal() {
+  let sum = 0;
+
+  for (const product of cart) {
+    sum += product.quantity * product.price;
+  }
+  return sum;
+
+}
+
+
 
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total of all products
