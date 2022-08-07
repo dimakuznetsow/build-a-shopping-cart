@@ -119,6 +119,7 @@ function removeProductFromCart(productId) {
 }
 
 function cartTotal() {
+  
   let sum = 0;
 
   for (const product of cart) {
@@ -133,6 +134,17 @@ function emptyCart() {
   cart.pop(product);
 }
 
+
+function pay(amount) {
+  let totalToPay = cartTotal();
+  cashReturned = totalToPay - amount;
+
+    if (cashReturned < 0) {
+    return -(totalToPay - amount);
+  } else {
+    return -cashReturned;
+  }
+}
 
 
 
