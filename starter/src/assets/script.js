@@ -40,7 +40,22 @@
   - removeProductFromCart should remove the product from the cart
 */
 
+/* Create a function named cartTotal that has no parameters
+  - cartTotal should iterate through the cart to get the total of all products
+  - cartTotal should return the sum of the products in the cart
+*/
+
+/* Create a function called emptyCart that empties the products from the cart */
+
 const products = [
+ 
+  {
+    name: "Cherries",
+    price: 4,
+    quantity: 0,
+    productId: 2,
+    image: src = "images/cherry.jpg"
+  },
   {
     name: "Strawberries",
     price: 5,
@@ -49,15 +64,8 @@ const products = [
     image: src = "images/strawberry.jpg"
   },
   {
-    name: "Cherries",
-    price: 10,
-    quantity: 0,
-    productId: 2,
-    image: src = "images/cherry.jpg"
-  },
-  {
     name: "Oranges",
-    price: 15,
+    price: 10,
     quantity: 0,
     productId: 3,
     image: src = "images/orange.jpg"},
@@ -120,14 +128,14 @@ function cartTotal() {
 
 }
 
+function emptyCart() {
+
+  cart.pop(product);
+}
 
 
-/* Create a function named cartTotal that has no parameters
-  - cartTotal should iterate through the cart to get the total of all products
-  - cartTotal should return the sum of the products in the cart
-*/
 
-/* Create a function called emptyCart that empties the products from the cart */
+
 
 /* Create a function named pay that takes in an amount as an argument
   - pay will return a negative number if there is a remaining balance
