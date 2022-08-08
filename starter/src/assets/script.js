@@ -53,126 +53,133 @@
 */
 
 const products = [
- 
-  {
-    name: "Cherries",
-    price: 4,
-    quantity: 0,
-    productId: 2,
-    image: src = "images/cherry.jpg"
-  },
-  {
-    name: "Strawberries",
-    price: 5,
-    quantity: 0,
-    productId: 1,
-    image: src = "images/strawberry.jpg"
-  },
-  {
-    name: "Oranges",
-    price: 10,
-    quantity: 0,
-    productId: 3,
-    image: src = "images/orange.jpg"},
+
+	{
+		name: "Cherries",
+		price: 4,
+		quantity: 0,
+		productId: 2,
+		image: src = "images/cherry.jpg"
+	},
+	{
+		name: "Strawberries",
+		price: 5,
+		quantity: 0,
+		productId: 1,
+		image: src = "images/strawberry.jpg"
+	},
+	{
+		name: "Oranges",
+		price: 10,
+		quantity: 0,
+		productId: 3,
+		image: src = "images/orange.jpg"
+	},
 ];
 
-let cart = [];
+const cart = [];
 
 
 
 function addProductToCart(productId) {
- 
- const product = products.find(product => product.productId === productId);
 
+	const product = products.find(product => product.productId === productId);
+  
   if (cart.includes(product)) {
     product.quantity++;
-  
-  } else {
-    cart.push(product);
-    product.quantity++;
+  }
+	else {
+		cart.push(product);
+		product.quantity++;
 }
-}
+  }
 
 function increaseQuantity(productId) {
 
-  const product = cart.find(product => product.productId === productId);
+	const product = cart.find(product => product.productId === productId);
 
-  product.quantity++;
+	product.quantity++;
 }
 
 function decreaseQuantity(productId) {
 
-  const product = cart.find(product => product.productId === productId);
-
+	const product = cart.find(product => product.productId === productId);
   
+  let index = cart.indexOf(product);
 
-  if (product.quantity > 0) {
-    product.quantity--;
-  
-  } else {
-    cart.pop(product);
-  }
-} 
+	if (product.quantity > 1) {
+
+		product.quantity--;
+
+	} else if (product.quantity = 1) {
+
+		product.quantity = 0;
+		cart.splice(index, 1);
+
+	} else {
+
+		cart.splice(index, 1);
+	}
+}
 
 function removeProductFromCart(productId) {
 
-  const product = cart.find(product => product.productId === productId);
+	const product = cart.find(product => product.productId === productId);
 
-  product.quantity = 0;
-  cart.pop(product);
+  let index = cart.indexOf(product);
+
+	product.quantity = 0;
+
+	cart.splice(index, 1);
 
 }
 
 function cartTotal() {
-  
-  let sum = 0;
 
-  for (const product of cart) {
-    sum += product.quantity * product.price;
-  }
-  return sum;
+	let sum = 0;
+
+	for (const product of cart) {
+		sum += product.quantity * product.price;
+	}
+	return sum;
 
 }
 
 function emptyCart() {
 
-  cart.pop(product);
+	cart.pop(product);
 }
 
+let totalPaid = 0;
 
 function pay(amount) {
-  let totalToPay = cartTotal();
-  cashReturned = totalToPay - amount;
 
-    if (cashReturned < 0) {
-    return -(totalToPay - amount);
-  } else {
-    return -cashReturned;
-  }
+	const totalToPay = cartTotal();
+
+  totalPaid += amount;
+   return totalPaid - totalToPay;
+	
 }
 
-
-
-
-
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
-
-
+  
 /* The following is for running unit tests. 
-   To fully complete this project, it is expected that all tests pass.
-   Run the following command in terminal to run tests
-   npm run test
+	 To fully complete this project, it is expected that all tests pass.
+	 Run the following command in terminal to run tests
+	 npm run test
 */
 
-/*module.exports = {
-   products,
-   cart,
-   addProductToCart,
-   increaseQuantity,
-   decreaseQuantity,
-   removeProductFromCart,
-   cartTotal,
-   pay, 
-   emptyCart,
-   /* Uncomment the following line if completing the currency converter bonus */
-   // currency}
+/*  
+module.exports = {
+	 products,
+	 cart,
+	 addProductToCart,
+	 increaseQuantity,
+	 decreaseQuantity,
+	 removeProductFromCart,
+	 cartTotal,
+	 pay, 
+	 emptyCart}
+
+/* Uncomment the following line if completing the currency converter bonus */
+// currency}
